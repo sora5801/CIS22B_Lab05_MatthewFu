@@ -54,7 +54,7 @@ int main()
    cin >> hourlyrateentered;
 
    ProductionWorker Person;
-
+   //Creates a bunch of mutators to set the instance variables of the person/
    try {
       Person.setNumber(Idnumber);
    }
@@ -62,7 +62,7 @@ int main()
    {
       cout << "Error: A bad number was entered." << endl;
    }
-   //Creates a bunch of mutators to set the instance variables of the person/
+   
    try {
       Person.setshift(shiftentered);
    }

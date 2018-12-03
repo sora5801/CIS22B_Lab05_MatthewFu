@@ -10,6 +10,7 @@ protected:
    int number; //Employee ID number
    std::string date; //Employee date joined.
 public:
+   //An exception class
    class InvalidEmployeeNumber {};
    //Default Constructor
    Employee();

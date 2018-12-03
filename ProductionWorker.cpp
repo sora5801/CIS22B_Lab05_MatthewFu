@@ -21,6 +21,7 @@ ProductionWorker::ProductionWorker(int s, double p, std::string n, int num, std:
 }
 void ProductionWorker::setshift(int s)
 {
+   //If the number is not 1 or 2, an exception will be thrown
    if (s == 1 || s == 2)
       shift = s;
    else
@@ -29,6 +30,7 @@ void ProductionWorker::setshift(int s)
 
 void ProductionWorker::sethourlypayrate(double h)
 {
+   //If the hourly rate is less than 0, an exception will be thrown.
    if (h > 0)
       hourlypayrate = h;
    else
