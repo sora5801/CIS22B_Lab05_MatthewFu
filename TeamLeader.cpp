@@ -46,7 +46,10 @@ void TeamLeader::setrequiredHours(int rh)
 }
 void TeamLeader::settrainingHours(int th)
 {
-   trainingHours = th;
+   if (th >= 8)
+      trainingHours = th;
+   else
+      throw IncompleteTraining();
 }
 
 double TeamLeader::moneyearned()

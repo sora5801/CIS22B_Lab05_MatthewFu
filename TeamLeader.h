@@ -11,6 +11,7 @@ private:
    int trainingHours; //Hours put into so far.
 public:
    //Default Constructor
+   class IncompleteTraining {};
    TeamLeader();
    //Constructor
    TeamLeader(int, int, int, double, int, std::string, int, std::string);

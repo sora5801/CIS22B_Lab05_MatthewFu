@@ -1,3 +1,3 @@
 ﻿  CIS22B_Lab05_MatthewFu.cpp
-c:\users\matthew\source\repos\cis22b_lab05_matthewfu\cis22b_lab05_matthewfu\cis22b_lab05_matthewfu.cpp(39): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\matthew\source\repos\cis22b_lab05_matthewfu\cis22b_lab05_matthewfu\cis22b_lab05_matthewfu.cpp(42): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   CIS22B_Lab05_MatthewFu.vcxproj -> C:\Users\MATTHEW\source\repos\CIS22B_Lab05_MatthewFu\Debug\CIS22B_Lab05_MatthewFu.exe

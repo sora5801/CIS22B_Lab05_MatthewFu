@@ -41,6 +41,7 @@ void Employee::setName(std::string n)
 
 void Employee::setNumber(int n)
 {
+   //If the number is less than 0 or greater than 9999, an exception will be thrown
    if (n >= 0 && n <= 9999)
       number = n;
    else

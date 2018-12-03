@@ -20,6 +20,9 @@ Ask user for his or her name.
 Ask the user for the current date.
 Creates a ProductionWorker object.
 Calls mutators to set object's instance variable with required items.
+   If the user inputs an incorrect number for the ID, an exception will be thrown
+   If the user inputs an invalid shift number, then an exception will be thrown
+   If the user puts in an hourlyrate of less than 0 dollars, then an exception will be thrown
 Creates another ProductionWorker object, but calls the second constructor.
 Creates ShiftSupervisor object.
 Creates TeamLeader object.
@@ -50,7 +53,7 @@ int main()
    //Create a ProductionWorker object and call the default constructor.
    cout << "Our policy is that we allow our worker to choose your shift. What shift would you like? Enter 1 for the day shift or 2 for the night shift. " << endl;
    cin >> shiftentered;
-   cout << "We are feeling generous and you may even choose your hourlyrate? Enter an hourly rate that is greater than 0 dollars an hour. " << endl;
+   cout << "We are feeling generous and you may even choose your hourly rate. Enter an hourly rate that is greater than 0 dollars an hour. " << endl;
    cin >> hourlyrateentered;
 
    ProductionWorker Person;
@@ -75,7 +78,7 @@ int main()
    }
    catch (ProductionWorker::InvalidPayRate)
    {
-      cout << "Error: Give me more money. " << endl;
+      cout << "Error: Give me more money. " << endl << endl;
    }
    Person.setName(name);
    
@@ -84,10 +87,10 @@ int main()
 
    //Create a ProductionWorker object and call constructor #2. This demonstrates constructor overload.
    ProductionWorker FourthPerson(shift, hourlyrate, "Megaman", 123456, "08/14/2006", hoursworkedinamonth);
-
+   int requiredtraininghours;
    //Create ShiftSupervisor object and TeamLeader object.
    ShiftSupervisor SecondPerson(100000, 20000, "UltraMan", 234234, "09/18/1997");
-   TeamLeader ThirdPerson(3000, 50, 30, 65, hoursworkedinamonth, "Bob the Builder", 345345, "05/17/1993");
+   // TeamLeader ThirdPerson(3000, 50, , 65, hoursworkedinamonth, "Bob the Builder", 345345, "05/17/1993");
 
    cout << "Welcome, " << Person.getName() << endl;
    cout << "The date you joined our company is " << Person.getDate() << endl;
@@ -104,6 +107,22 @@ int main()
    cout << "He gets $" << SecondPerson.getannualsalary() << " a year as a salary and $" << SecondPerson.getannualproductionbonus()
       << " as a production bonus if his shift meets production goal so work hard for him. Moving on." << endl << endl;
 
+   TeamLeader ThirdPerson;
+   ThirdPerson.sethoursworkedthismonth(hoursworkedinamonth);
+   ThirdPerson.setDate("05/17/1993");
+   ThirdPerson.setrequiredHours(50);
+   ThirdPerson.setmonthlyBonus(3000);
+   ThirdPerson.setName("Bob the Builder");
+   ThirdPerson.setNumber(9001);
+   cout << SecondPerson.getName() << ", how many hours of training did " << ThirdPerson.getName() << " complete so far? " << endl;
+   cin >> requiredtraininghours;
+   try {
+      ThirdPerson.settrainingHours(requiredtraininghours);
+   }
+   catch (TeamLeader::IncompleteTraining)
+   {
+      cout << "Your Team Leader is incompetent. Don't listen to him. " << endl << endl;
+   }
    vocalCommands(ThirdPerson); //Calls the vocalCommands(TeamLeader &) function.
    vocalCommands(FourthPerson); //Calls the void vocalCommands(ProductionWorker &) function.
 

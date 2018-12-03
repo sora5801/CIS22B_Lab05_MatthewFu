@@ -13,6 +13,7 @@ protected:
    double hourlypayrate; //Money made in an hour.
    int hoursworkedthismonth; //Hours worked in a month
 public:
+   //These are the exception classes.
    class InvalidShift {};
    class InvalidPayRate {};
    
