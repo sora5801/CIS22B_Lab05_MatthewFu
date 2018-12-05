@@ -103,7 +103,7 @@ int main()
       }
    }
    Person.setName(name);
-   
+
    Person.setDate(date);
    Person.sethoursworkedthismonth(hoursworkedinamonth);
 
@@ -136,15 +136,20 @@ int main()
    ThirdPerson.setmonthlyBonus(3000);
    ThirdPerson.setName("Bob the Builder");
    ThirdPerson.setNumber(9001);
-   cout << SecondPerson.getName() << ", how many hours of training did " << ThirdPerson.getName() << " complete so far? " << endl;
+   cout << SecondPerson.getName() << ", how many hours of training did " << ThirdPerson.getName() << " complete so far? He did complete at least 8 hours right? " << endl;
    cin >> requiredtraininghours;
+   tryAgain = true;
+   while (tryAgain) {
    try {
       ThirdPerson.settrainingHours(requiredtraininghours);
+      tryAgain = false;
    }
    catch (TeamLeader::IncompleteTraining)
    {
-      cout << "Your Team Leader is incompetent. Don't listen to him. " << endl << endl;
+      cout << "What! That can't be! He must have completed at least 8 hours!" << endl;
+      cin >> requiredtraininghours;
    }
+   }  cout << "Whew. I thought he was an incompetant leader for a second. " << endl << endl;
 
    vocalCommands(ThirdPerson); //Calls the vocalCommands(TeamLeader &) function.
    vocalCommands(FourthPerson); //Calls the void vocalCommands(ProductionWorker &) function.
