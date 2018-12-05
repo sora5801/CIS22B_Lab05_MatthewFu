@@ -28,6 +28,8 @@ Creates ShiftSupervisor object.
 Creates TeamLeader object.
 Introduce user to factory and let's him or her know his or her shift, hourly pay, and monthly rate.
 Introduce user to the Shift Supervisor and let's user know annual salary as well as bonus.
+Asks for the completed training hours of the Team Leader.
+   If it is less than 8 hours, an exception will be thrown.
 Call vocal command functions that has a Teamleader object as a parameter
 Call vocal command function that has a Production object as a parameter
 Introduce user to the TeamLeader. Shows the overriden displayMoney function.
@@ -39,46 +41,66 @@ int main()
    int Idnumber;
    int shiftentered;
    double hourlyrateentered;
+   bool tryAgain = true;
    srand(time(NULL)); //To seed the time.
    int shift = rand() % 2 + 1; // If 1, then day shift. If 2, the night shift.
    double hourlyrate = 12.00;
    int ID = rand() % 9999; //Pseudo-randomly generate an ID number
    int hoursworkedinamonth = 150;
+   ProductionWorker Person;
    cout << "Welcome to the factory. What is your name?" << endl;
    getline(cin, name);
    cout << "What is the current date? Please enter in mm/dd/yyyy format." << endl;
    getline(cin, date);
    cout << "What do you want your ID to be? Please keep it between 0 and 9999." << endl;
    cin >> Idnumber;
-   //Create a ProductionWorker object and call the default constructor.
+   while (tryAgain)
+   {
+      try {
+         Person.setNumber(Idnumber);
+         // If no exception was thrown, then the
+            // next statement will execute. 
+         tryAgain = false;
+      }
+      catch (ProductionWorker::InvalidEmployeeNumber)
+      {
+         cout << "Error: A bad number was entered. Please keep it between 0 and 9999" << endl;
+         cin >> Idnumber;
+      }
+   }
    cout << "Our policy is that we allow our worker to choose your shift. What shift would you like? Enter 1 for the day shift or 2 for the night shift. " << endl;
    cin >> shiftentered;
+   tryAgain = true;
+   while (tryAgain)
+   {
+      try {
+         Person.setshift(shiftentered);
+         // If no exception was thrown, then the
+         // next statement will execute. 
+         tryAgain = false;
+      }
+      catch (ProductionWorker::InvalidShift)
+      {
+         cout << "Error: An invalid shift Please type in 1 or 2. " << endl;
+         cin >> shiftentered;
+      }
+   }
    cout << "We are feeling generous and you may even choose your hourly rate. Enter an hourly rate that is greater than 0 dollars an hour. " << endl;
    cin >> hourlyrateentered;
 
-   ProductionWorker Person;
-   //Creates a bunch of mutators to set the instance variables of the person/
-   try {
-      Person.setNumber(Idnumber);
-   }
-   catch (ProductionWorker::InvalidEmployeeNumber)
-   {
-      cout << "Error: A bad number was entered." << endl;
-   }
-   
-   try {
-      Person.setshift(shiftentered);
-   }
-   catch (ProductionWorker::InvalidShift)
-   {
-      cout << "Error: invalid shift. " << endl;
-   }
-   try {
-      Person.sethourlypayrate(hourlyrateentered);
-   }
-   catch (ProductionWorker::InvalidPayRate)
-   {
-      cout << "Error: Give me more money. " << endl << endl;
+   tryAgain = true;
+   while (tryAgain) {
+      try {
+         Person.sethourlypayrate(hourlyrateentered);
+         // If no exception was thrown, then the
+         // next statement will execute. 
+         tryAgain = false;
+      }
+      catch (ProductionWorker::InvalidPayRate)
+      {
+         cout << "Error: Give me more money. Please keep it positive " << endl;
+         cin >> hourlyrateentered;
+      }
    }
    Person.setName(name);
    
@@ -123,6 +145,7 @@ int main()
    {
       cout << "Your Team Leader is incompetent. Don't listen to him. " << endl << endl;
    }
+
    vocalCommands(ThirdPerson); //Calls the vocalCommands(TeamLeader &) function.
    vocalCommands(FourthPerson); //Calls the void vocalCommands(ProductionWorker &) function.
 
